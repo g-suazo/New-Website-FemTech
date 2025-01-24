@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu and Header</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background-color: #030027;
+            color: #60e0df;
+        }
+
+        .navbar .nav-link{
+            color: #60e0df;
+            background-color: #030027;
+        }
+
+        .navbar .nav-link:hover{
+            color: #ffffff;
+        }
+
+        .navbar-toggler-icon {
+            color: #030027;
+            background-color: #60e0df;
+        }
+
+        .header {
+            margin-top: 70px; /* Adjust based on navbar height */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            max-width: 100%;
+            height: auto;
+        }
+        .header .text {
+            flex: 1;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navbar -->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="./assets/img/logo_web.png" alt="FEMTECH" width="200px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="container header">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://via.placeholder.com/400" alt="Header Image">
+            </div>
+            <div class="col-md-6 text">
+                <h1>Header Text</h1>
+                <p>This is some text next to the image. It is responsive and will adjust based on the screen size.</p>
+                <button class="btn btn-primary">Button</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
