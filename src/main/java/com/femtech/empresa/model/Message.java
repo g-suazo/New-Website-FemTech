@@ -1,8 +1,11 @@
 package com.femtech.empresa.model;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 @Getter
@@ -18,5 +21,4 @@ public class Message {
     private String subject;
     private String content;
 
-    // getters y setters
 }
