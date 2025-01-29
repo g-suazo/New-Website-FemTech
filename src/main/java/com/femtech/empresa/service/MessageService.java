@@ -1,32 +1,51 @@
 package com.femtech.empresa.service;
 
 import com.femtech.empresa.model.Message;
-import com.femtech.empresa.model.MessageRequestDTO;
 import com.femtech.empresa.repository.MessageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class MessageService {
 
-    private final MessageRepository repository;
+    private final MessageRepository messageRepository;
 
-    public MessageService(MessageRepository repository) {
-        this.repository = repository;
+    @Autowired
+    public MessageService(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
     }
 
-    public void sendMessage(MessageRequestDTO request) {
-        Message message = new Message();
-        message.setClientName(request.clientName());
-        message.setClientEmail(request.clientEmail());
-        message.setSubject(request.subject());
-        message.setContent(request.content());
-        repository.save(message);
+    // nuevo método para paginación
+    public Page<Message> getMessagesPaginated(Pageable pageable) {
+        return messageRepository.findAll(pageable);
     }
 
-    public List<Message> getAllMessages() {
-        return repository.findAll();
+    // nuevo método para buscar mensajes por nombre del cliente
+    public Page<Message> findMessagesByClientName(String clientName, Pageable pageable) {
+        return messageRepository.findByClientNameContaining(clientName, pageable);
+    }
+
+    public void saveMessage(Message message) {
+        messageRepository.save(message);
+    }
+
+    public void deleteMessage(Long id) {
+        messageRepository.deleteById(id);
+    }
+
+    public Message updateMessage(Long id, Message updatedMessage) {
+        return messageRepository.findById(id)
+                .map(message -> {
+                    message.setClientName(updatedMessage.getClientName());
+                    message.setClientEmail(updatedMessage.getClientEmail());
+                    message.setSubject(updatedMessage.getSubject());
+                    message.setContent(updatedMessage.getContent());
+                    return messageRepository.save(message);
+                })
+                .orElseThrow(() -> new RuntimeException("Mensaje no encontrado"));
     }
 }
 
