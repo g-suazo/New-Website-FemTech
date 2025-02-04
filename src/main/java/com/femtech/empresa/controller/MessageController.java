@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-
+@CrossOrigin(origins = "http://127.0.0.1:8081") // permite solicitudes desde el frontend
 @RestController
 @RequestMapping("/api/messages")
 @Tag(name = "Mensajes", description = "Operaciones relacionadas con los mensajes")

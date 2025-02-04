@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Getter
@@ -19,6 +20,7 @@ public class Message {
     private Long id;
 
     @NotBlank(message = "El nombre del cliente es obligatorio")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÿ\\s]+$", message = "El nombre solo puede contener letras y espacios")
     private String clientName;
 
     @NotBlank(message = "El correo electrónico es obligatorio")
