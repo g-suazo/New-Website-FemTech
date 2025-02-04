@@ -1,0 +1,207 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: "Open Sans", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.October-Twilight{
+  font-family: "October Twilight", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.orange-bg{
+  background-color: #FC642B !important;
+  color: #fff !important;
+}
+
+.orange{
+  color: #FC642B !important;
+}
+
+.turquesa{
+  color: #20c1c1!important;
+}
+
+.vfcolor{
+  color:  #030027 !important;
+}
+
+.tfcolor{
+  color:  #030027 !important;
+}
+
+.Violet{
+  color:  #030027 !important;
+}
+
+footer{
+  color: #60e0df;
+  background-color: #030027;
+}
+
+/*header*/
+
+#bg-hero{
+  background: url(../img/bg-2.png) no-repeat center/cover;
+}
+
+.swiper-container {
+  position: relative;
+  height: 100%;
+}
+
+.swiper {
+  width: 450px;
+  height: 450px;
+  position: absolute;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.line-vertical {
+  border-right: 2px solid #030027;
+  padding-right: 22px;
+  margin-bottom: -1px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.line-vertical:hover{
+  border-right: 2px solid #20c1c0;
+  color: #030027;
+}
+
+.line-vertical::before {
+  content: ''; /* Obligatorio para generar el pseudo-elemento */
+  display: inline-block; /* Para que la línea aparezca junto al texto */
+  width: 4px; /* Grosor de la línea */
+  height: 100%; /* Ajusta la altura de la línea al contenido */
+  background-color: #20c1c1; /* Color de la línea */
+  margin-left: 10px; /* Espacio entre la línea y el texto */
+  vertical-align: middle; /* Alinea la línea vertical con el texto */
+}
+
+#left-content{
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0.101) 0%,rgb(255, 253, 253) 100%),url(../img/backend.jpg)no-repeat center;
+  height: 700px;
+  
+}
+
+#left-content:hover{
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0.101) 0%,rgb(255, 253, 253) 100%),url(../img/backend_dos.jpg)no-repeat center;
+  height: 700px;
+}
+
+#right-content{
+  background: linear-gradient(to bottom,rgba(17, 162, 162, 0.95) 0%,rgba(255, 255, 255, 0.95) 100%),url(../img/diseno.jpg)no-repeat center;
+  height: 340px;
+}
+
+#right-content:hover{
+  background:linear-gradient(to bottom,rgba(233, 233, 233, 0.053) 0%,rgba(255, 255, 255, 0.95) 100%),url(../img/diseno.jpg)no-repeat center;
+  height: 340px;
+}
+
+#right-content-down{
+  background: linear-gradient(to bottom,rgba(17, 162, 162, 0.95) 0%,rgba(255, 255, 255, 0.95) 100%),url(../img/apps.jpg)no-repeat center;
+  height: 340px;
+}
+
+#right-content-down{
+  background: linear-gradient(to bottom,rgba(12, 0, 40, 0.95) 0%,rgba(255, 255, 255, 0.95) 100%),url(../img/apps.jpg)no-repeat center;
+  height: 340px;
+}
+
+#right-content-down:hover{
+  background: linear-gradient(to bottom,rgba(233, 233, 233, 0.053) 0%,rgba(255, 255, 255, 0.95) 100%),url(../img/apps.jpg)no-repeat center;
+  height: 340px;
+}
+
+#img-contact{
+background: linear-gradient(to bottom,rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.95) 100%),url(../img/background-contact.jpg)no-repeat center;
+background-size: cover;
+}
+
+#contact-page{
+  background-color: #c4f1f1;
+  background: url(../img/bg-contact.png)no-repeat center/cover;
+  }
+  
+
+.scaled{
+  display: inline-block; /* Optional for better scaling */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.scaled:hover{
+  transform: scale(1.1);
+}
+
+.fade-in-image {
+  opacity: 0;
+  transform: translateY(100px); /* Mover ligeramente hacia abajo */
+  transition: opacity 0.5s ease-out, transform 1s ease-out;
+}
+
+.fade-in-image.visible {
+  opacity: 1;
+  transform: translateY(0); /* Volver a su posición original */
+}
+
+@media (max-width: 767.98px) { 
+
+  #bg-hero{
+    background-color: #030027;
+    background: url(../img/bg-mobile.png) no-repeat center/cover;
+  }
+
+  .swiper-container {
+    position: relative;
+    height: 80%;
+  }
+  
+  .swiper {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+  }
+  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+
+  #contact-page{
+    background-color: #befafa;
+    }
+
+    #left-content{
+      background: linear-gradient(to bottom,rgba(255, 255, 255, 0.101) 0%,rgb(255, 253, 253) 100%),url(../img/backend.jpg)no-repeat center;
+      max-height: 340px;
+      
+    }
+ }

@@ -1,0 +1,52 @@
+<!-- Header Section -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<div class="container-fluid" id="bg-hero">
+    <div class="row">
+        <div class="col-md-6 col-12 p-5 my-5 swiper-container">
+            <!-- Swiper -->
+            <div class="mySwiper swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="../assets/img/header/header_slide_1.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/header/header_slide_2.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/header/header_slide_3.png"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/header/header_slide_4.png"/>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 my-5 p-5">
+            <h1 class="display-3 fw-bold mt-5">En FemTech</h1>
+            <p class="display-6">Desarrollamos software y estrategias de branding que impulsan el crecimiento de tu negocio.</p>
+            <button class="btn btn-warning btn-lg">More Info</button>
+        </div>
+    </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "cube",
+    grabCursor: true,
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+</script>

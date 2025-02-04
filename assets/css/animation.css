@@ -1,0 +1,26 @@
+.ticker-wrap {
+  overflow: hidden; /* Oculta el contenido que sale del contenedor */
+  position: relative;
+}
+
+.ticker {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  animation: ticker-move 20s linear infinite; /* Movimiento infinito */
+}
+
+.ticker__item {
+  flex: 0 0 auto; /* Impide que los ítems cambien de tamaño */
+  margin: 0 2.5rem; /* Espaciado entre los elementos */
+}
+
+@keyframes ticker-move {
+  from {
+      transform: translateX(50%); /* Inicia fuera del contenedor */
+  }
+  to {
+      transform: translateX(-100%); /* Termina fuera del contenedor por el otro lado */
+  }
+}

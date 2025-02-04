@@ -1,0 +1,92 @@
+<!-- contact.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | FemTech<</title>
+
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/nav-bar.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/load-components.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+   
+    <navbar></navbar> <!-- Aquí se cargará el navbar --> 
+<div class="container-fluid" id="contact-page">
+    <div class="container">
+        <h1 class="display-3 fw-bold p-5 text-center">Contacto</h1>
+
+        <div class="row justify-content-center pt-5">
+            <div class="col-lg-10 col-12">
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="name" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Escribinos tu nombre">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="lastname" class="form-label">Apellido:</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Escribinos tu apellido">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="phone" class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Escribinos tu teléfono">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Escribinos tu correo electrónico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Elegí el servicio de tu interés:</label>
+                        <select class="form-select" id="service">
+                            <option selected>Diseño y desarrollo web</option>
+                            <option>Proyecto backend</option>
+                            <option>Desarrollo de aplicaciones</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="form-label">¡Contanos si buscás algo en especial!</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Escribinos tu mensaje"></textarea>
+                    </div>
+                    <button type="submit" class="btn text-uppercase fw-bold text-dark px-4 py-2" style="background-color: #20c1c1;">
+                        Enviá la información
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center text-center py-5 g-4 ">
+            
+            <div class="col-lg-4 col-12 p-5 text-center bg-body-tertiary rounded-3 m-3">
+                <h3>Email</h3>
+                <p>info@femtechcr.com</p>
+            </div>
+            <div class="col-lg-4 col-12 p-5 text-center bg-body-tertiary rounded-3 m-3">
+
+                <h3>WhatsApp</h3>
+                <a aria-label="Chat on WhatsApp" href="https://wa.me/+50661003513"><img alt="Chat on WhatsApp" src="./assets/img/WhatsAppButtonGreenMedium.svg" />
+            </div>
+
+        </div>
+
+        
+    </div>
+</div>
+
+
+    <footer></footer>
+</body>
+</html>
