@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 public class MessageService {
@@ -19,66 +20,111 @@ public class MessageService {
         this.emailService = emailService;
     }
 
+    // obtener mensajes paginados
     public Page<Message> getMessagesPaginated(Pageable pageable) {
         return messageRepository.findAll(pageable);
     }
 
+    // buscar mensajes por nombre del cliente
     public Page<Message> findMessagesByClientName(String clientName, Pageable pageable) {
         return messageRepository.findByClientNameContaining(clientName, pageable);
     }
 
+    // guardar mensaje con validaciones
     public void saveMessage(Message message) {
-        // guardar mensaje en la base de datos
+        if (message.getClientName() == null || message.getClientName().trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ error: el nombre del cliente es obligatorio.");
+        }
+        if (message.getClientEmail() == null || message.getClientEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ error: el correo electrónico es obligatorio.");
+        }
+        if (message.getSubject() == null || message.getSubject().trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ error: el asunto es obligatorio.");
+        }
+        if (message.getContent() == null || message.getContent().trim().isEmpty()) {
+            throw new IllegalArgumentException("❌ error: el contenido del mensaje es obligatorio.");
+        }
+
+        // guardar en base de datos
         messageRepository.save(message);
 
-        // enviar correo a la empresa y una copia al cliente
+        // enviar notificación a la empresa y copia al cliente
         sendNotificationEmail(message);
         sendCopyToClient(message);
     }
 
+    // enviar correo a la empresa
     private void sendNotificationEmail(Message message) {
         String to = "info@femtechcr.com"; // correo de la empresa
         String subject = "Nuevo mensaje de contacto de " + message.getClientName();
-        String body = "Has recibido un nuevo mensaje de contacto:\n\n" +
-                "Nombre: " + message.getClientName() + "\n" +
-                "Correo: " + message.getClientEmail() + "\n" +
-                "Asunto: " + message.getSubject() + "\n" +
-                "Mensaje: " + message.getContent() + "\n\n" +
-                "Por favor, responde lo antes posible.";
+        String body = """
+                Has recibido un nuevo mensaje de contacto:
+                
+                Nombre: %s
+                Correo: %s
+                Asunto: %s
+                Mensaje: %s
+                
+                Por favor, responde lo antes posible.
+                """.formatted(message.getClientName(), message.getClientEmail(), message.getSubject(), message.getContent());
 
-        // si el cliente puso un email válido, se usa como "Reply-To"
         emailService.sendContactEmail(to, subject, body, message.getClientEmail());
     }
 
+    // enviar copia al cliente
     private void sendCopyToClient(Message message) {
-        String to = message.getClientEmail(); // correo del cliente
+        String to = message.getClientEmail();
         String subject = "Copia de tu mensaje a FemTech";
-        String body = "Hola " + message.getClientName() + ",\n\n" +
-                "Hemos recibido tu mensaje y te responderemos lo antes posible.\n\n" +
-                "Aquí tienes una copia de tu consulta:\n\n" +
-                "Asunto: " + message.getSubject() + "\n" +
-                "Mensaje: " + message.getContent() + "\n\n" +
-                "Gracias por contactarnos.\n\n" +
-                "Atentamente,\n" +
-                "El equipo de FemTech.";
+        String body = """
+                Hola %s,
+                
+                Hemos recibido tu mensaje y te responderemos lo antes posible.
+                
+                Aquí tienes una copia de tu consulta:
+                
+                Asunto: %s
+                Mensaje: %s
+                
+                Gracias por contactarnos.
+                
+                Atentamente,
+                El equipo de FemTech.
+                """.formatted(message.getClientName(), message.getSubject(), message.getContent());
 
-        // el "Reply-To" será el correo de la empresa
         emailService.sendContactEmail(to, subject, body, "info@femtechcr.com");
     }
 
+    // eliminar mensaje con validación
     public void deleteMessage(Long id) {
+        if (!messageRepository.existsById(id)) {
+            throw new IllegalArgumentException("❌ error: el mensaje con ID " + id + " no existe.");
+        }
         messageRepository.deleteById(id);
     }
 
+    // actualizar mensaje con validaciones
     public Message updateMessage(Long id, Message updatedMessage) {
         return messageRepository.findById(id)
-                .map(message -> {
-                    message.setClientName(updatedMessage.getClientName());
-                    message.setClientEmail(updatedMessage.getClientEmail());
-                    message.setSubject(updatedMessage.getSubject());
-                    message.setContent(updatedMessage.getContent());
-                    return messageRepository.save(message);
+                .map(existingMessage -> {
+                    if (updatedMessage.getClientName() != null) {
+                        existingMessage.setClientName(updatedMessage.getClientName());
+                    }
+                    if (updatedMessage.getClientEmail() != null) {
+                        existingMessage.setClientEmail(updatedMessage.getClientEmail());
+                    }
+                    if (updatedMessage.getSubject() != null) {
+                        existingMessage.setSubject(updatedMessage.getSubject());
+                    }
+                    if (updatedMessage.getContent() != null) {
+                        existingMessage.setContent(updatedMessage.getContent());
+                    }
+                    return messageRepository.save(existingMessage);
                 })
-                .orElseThrow(() -> new RuntimeException("Mensaje no encontrado"));
+                .orElseThrow(() -> new IllegalArgumentException("❌ error: mensaje con ID " + id + " no encontrado."));
+    }
+
+    // verificar si un mensaje existe
+    public boolean existsById(Long id) {
+        return messageRepository.existsById(id);
     }
 }
