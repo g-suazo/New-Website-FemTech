@@ -9,11 +9,11 @@
 		<relativePath/> <!-- permite buscar directamente en el repositorio central -->
 	</parent>
 
-	<groupId>com.femtech</groupId>
-	<artifactId>empresa</artifactId>
+	<groupId>com.elitederma</groupId>
+	<artifactId>clinica-elite-derma</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>empresa</name>
-	<description>Proyecto Empresa FemTech</description>
+	<name>Clínica Elite Derma - Backend</name>
+	<description>API REST con Spring Boot para el sitio web de Clínica Elite Derma</description>
 	<url/>
 	<licenses>
 		<license/>
